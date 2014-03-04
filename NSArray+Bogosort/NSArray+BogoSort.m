@@ -74,15 +74,14 @@
     id nextObject = [enumerator nextObject];
     if(nextObject)
     {
-      if([currentObject isKindOfClass:[nextObject class]])
+      if([currentObject isKindOfClass:[nextObject class]] &&
+         [currentObject respondsToSelector:@selector(compare:)] &&
+         [nextObject respondsToSelector:@selector(compare:)])
       {
-        if([currentObject respondsToSelector:@selector(compare:)] && [nextObject respondsToSelector:@selector(compare:)])
+        // Reject if next is smaller than current
+        if([currentObject compare:nextObject] == NSOrderedDescending)
         {
-          NSComparisonResult result = [currentObject compare:nextObject];
-          if(result == NSOrderedDescending)
-          {
-            return NO;
-          }
+          return NO;
         }
       }
       else

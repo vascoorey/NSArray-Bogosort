@@ -17,4 +17,6 @@
  */
 - (NSArray *) DOG_bogoSort;
 
+- (NSArray *) DOG_bogoBogoSort;
+
 @end

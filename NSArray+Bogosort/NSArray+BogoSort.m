@@ -39,6 +39,74 @@
   return bogoSortedArray;
 }
 
+- (NSArray *) DOG_bogoBogoSort
+{
+  NSMutableArray *bogoBogoSortedArray = [NSMutableArray array];
+  NSMutableArray *mutableSelf = [self mutableCopy];
+  
+  unsigned long count = 0;
+  while (mutableSelf.count)
+  {
+    NSLog(@"%lu", count);
+    count ++;
+    if(!bogoBogoSortedArray.count)
+    {
+      // Need to pick 2 at random
+      id first = [mutableSelf objectAtIndex:arc4random_uniform(mutableSelf.count)];
+      [mutableSelf removeObject:first];
+      id second = [mutableSelf objectAtIndex:arc4random_uniform(mutableSelf.count)];
+      [mutableSelf removeObject:second];
+      
+      if([first isKindOfClass:[second class]] &&
+         [first respondsToSelector:@selector(compare:)] &&
+         [second respondsToSelector:@selector(compare:)])
+      {
+        if([first compare:second] != NSOrderedDescending)
+        {
+          [bogoBogoSortedArray addObjectsFromArray:@[ first, second ]];
+        }
+        else
+        {
+          // Restart
+          bogoBogoSortedArray = [NSMutableArray array];
+          mutableSelf = [self mutableCopy];
+        }
+      }
+      else
+      {
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"Invalid objects in array" userInfo:nil] raise];
+        return nil;
+      }
+    }
+    else
+    {
+      id random = [mutableSelf objectAtIndex:arc4random_uniform(mutableSelf.count)];
+      [mutableSelf removeObject:random];
+      if([random isKindOfClass:[bogoBogoSortedArray.lastObject class]] &&
+         [bogoBogoSortedArray.lastObject respondsToSelector:@selector(compare:)])
+      {
+        if([bogoBogoSortedArray.lastObject compare:random] != NSOrderedDescending)
+        {
+          [bogoBogoSortedArray addObject:random];
+        }
+        else
+        {
+          // Restart
+          bogoBogoSortedArray = [NSMutableArray array];
+          mutableSelf = [self mutableCopy];
+        }
+      }
+      else
+      {
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"Invalid objects in array" userInfo:nil] raise];
+        return nil;
+      }
+    }
+  }
+  
+  return bogoBogoSortedArray;
+}
+
 @end
 
 @implementation NSArray (BogoSort_Private)

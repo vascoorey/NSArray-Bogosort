@@ -17,6 +17,9 @@
  */
 - (NSArray *) DOG_bogoSort;
 
+/**
+ *  When this one works it works. Probability of working is 1 / n! (for a list of n elements)
+ */
 - (NSArray *) DOG_bogoBogoSort;
 
 @end

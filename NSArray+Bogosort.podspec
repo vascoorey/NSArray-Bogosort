@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
   s.source       = { :git => "https://github.com/vascoorey/NSArray-Bogosort.git", :tag => "0.0.1" }
-  s.source_files  = 'NSArray+Bogosort/*.{h,m}'
+  s.source_files  = 'NSArray+Bogosort/NSArray+Bogosort.{h,m}'
   s.exclude_files = 'NSArray+Bogosort/Exclude'
   s.requires_arc = true
 end

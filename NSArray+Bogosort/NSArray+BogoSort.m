@@ -52,9 +52,9 @@
     if(!bogoBogoSortedArray.count)
     {
       // Need to pick 2 at random
-      id first = [mutableSelf objectAtIndex:arc4random_uniform(mutableSelf.count)];
+      id first = [mutableSelf objectAtIndex:arc4random_uniform((uint32_t)mutableSelf.count)];
       [mutableSelf removeObject:first];
-      id second = [mutableSelf objectAtIndex:arc4random_uniform(mutableSelf.count)];
+      id second = [mutableSelf objectAtIndex:arc4random_uniform((uint32_t)mutableSelf.count)];
       [mutableSelf removeObject:second];
       
       if([first isKindOfClass:[second class]] &&
@@ -80,7 +80,7 @@
     }
     else
     {
-      id random = [mutableSelf objectAtIndex:arc4random_uniform(mutableSelf.count)];
+      id random = [mutableSelf objectAtIndex:arc4random_uniform((uint32_t)mutableSelf.count)];
       [mutableSelf removeObject:random];
       if([random isKindOfClass:[bogoBogoSortedArray.lastObject class]] &&
          [bogoBogoSortedArray.lastObject respondsToSelector:@selector(compare:)])
@@ -124,7 +124,7 @@
   NSUInteger count = mutable.count;
   for(NSUInteger i = count - 1; i > 0; i --)
   {
-    [mutable exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform(i + 1)];
+    [mutable exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform((uint32_t)(i + 1))];
   }
   
   // Return an immutable array

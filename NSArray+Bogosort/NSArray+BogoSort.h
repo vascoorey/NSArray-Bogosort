@@ -12,13 +12,15 @@
 
 /**
  *  Sorts the contents of the array using BogoSort.
- *  Will raise an NSInvalidArgumentException if any object in the array doens't implement compare:
+ *  Will raise an NSInvalidArgumentException if any object in the array doesn't implement compare:
  *  Does not guarantee to halt.
  */
 - (NSArray *) DOG_bogoSort;
 
 /**
  *  When this one works it works. Probability of working is 1 / n! (for a list of n elements)
+ *  Will raise an NSInvalidArgumentException if any object in the array doesn't implement compare:
+ *  Does not guarantee to halt.
  */
 - (NSArray *) DOG_bogoBogoSort;
 

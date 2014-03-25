@@ -8,12 +8,16 @@
 
 #import "NSArray+BogoSort.h"
 
-@interface NSArray (BogoSort_Private)
+@interface NSMutableArray (BogoSortMutable_Private)
 
 /**
  *  Shuffles the contents of the array using the Knuth Shuffle
  */
-- (NSArray *) DOG_shuffle;
+- (void) DOG_shuffle;
+
+@end
+
+@interface NSArray (BogoSort_Private)
 
 /**
  *  Check if the array is sorted.
@@ -30,11 +34,14 @@
    *  So, bogosort randomly sorts an array and checks if it is sorted. If not it should try again.
    *  It should only return when the array is sorted.
    */
-  NSArray *bogoSortedArray = self;
+  unsigned long count = 0;
+  NSMutableArray *bogoSortedArray = [self mutableCopy];
   while (!bogoSortedArray.DOG_isSorted)
   {
+    NSLog(@"%lu", count);
+    count ++;
     // Keep dancing the Knuth Shuffle, yo
-    bogoSortedArray = [bogoSortedArray DOG_shuffle];
+    [bogoSortedArray DOG_shuffle];
   }
   return bogoSortedArray;
 }
@@ -109,9 +116,9 @@
 
 @end
 
-@implementation NSArray (BogoSort_Private)
+@implementation NSMutableArray (BogoSortMutable_Private)
 
-- (NSArray *) DOG_shuffle
+- (void) DOG_shuffle
 {
   /**
    *  To shuffle an array a of n elements (indices 0..n-1):
@@ -120,16 +127,16 @@
    *    j ← random integer with 0 ≤ j ≤ i
    *    exchange a[j] and a[i]
    */
-  NSMutableArray *mutable = [self mutableCopy];
-  NSUInteger count = mutable.count;
+  NSUInteger count = self.count;
   for(NSUInteger i = count - 1; i > 0; i --)
   {
-    [mutable exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform((uint32_t)(i + 1))];
+    [self exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform((uint32_t)(i + 1))];
   }
-  
-  // Return an immutable array
-  return [mutable copy];
 }
+
+@end
+
+@implementation NSArray (BogoSort_Private)
 
 - (BOOL) DOG_isSorted
 {

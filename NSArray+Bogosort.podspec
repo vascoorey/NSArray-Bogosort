@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NSArray+Bogosort"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "An extremely unuseful sort category for NSArray. Don't use this."
   s.description  = <<-DESC
                    An Objective-C implementation of 2 pretty bad sorting algos.
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.social_media_url = "http://twitter.com/oppfiz"
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
-  s.source       = { :git => "https://github.com/vascoorey/NSArray-Bogosort.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/vascoorey/NSArray-Bogosort.git", :tag => "0.0.2" }
   s.source_files  = 'NSArray+Bogosort/NSArray+Bogosort.{h,m}'
   s.exclude_files = 'NSArray+Bogosort/Exclude'
   s.requires_arc = true
